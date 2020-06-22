@@ -1,0 +1,33 @@
+.topMargin {
+    margin-top: 20px;
+}
+.createDealContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.sectionOne {
+    background-color: #b4c9ed;
+    padding: 10px;
+    width: 30%;
+}
+.sectionTwo {
+    background-color: #435063;
+    color: white;
+    padding: 10px; 
+    width: 30%; 
+    margin-left: 10px; 
+}
+.sectionThree {
+    background-color: #11539e;
+    color: white; 
+    padding: 10px; 
+    width: 30%; 
+    margin-left: 10px;
+}
+.sectionFour {
+    background-color: #b4c9ed; 
+    padding: 10px; 
+    width: 30%;
+    margin-left: 10px;
+}
