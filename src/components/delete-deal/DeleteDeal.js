@@ -20,7 +20,7 @@ export const DeleteDeal = (props) => {
 
     useEffect(() => {
         axios.get(
-            `http://localhost:4000/deals/${props.match.params.id}`)
+            `/api/deals/${props.match.params.id}`)
             .then(response => setDealState(response.data))
             .catch(function (error) {
                 console.log(error);

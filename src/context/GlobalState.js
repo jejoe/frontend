@@ -18,7 +18,7 @@ export const GlobalProvider = ({ children }) => {
     async function getDeals() {
         try {
             const res = await axios.get(
-                'http://localhost:4000/deals/');
+                '/api/deals/');
             dispatch({
                 type: 'GET_DEALS',
                 payload: res.data
@@ -34,7 +34,7 @@ export const GlobalProvider = ({ children }) => {
     async function deleteDeal(id) {
         try {
 
-            await axios.post(`http://localhost:4000/deals/delete/${id}`)
+            await axios.post(`/api/deals/delete/${id}`)
                 .then(res => console.log(res.data)
                 );
             dispatch({
@@ -52,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
     function addDeal(newDeal) {
         try {
 
-            axios.post('http://localhost:4000/deals/add', newDeal)
+            axios.post('/api/deals/add', newDeal)
                 .then(res => console.log(res.data)
                 );
             dispatch({
@@ -72,7 +72,7 @@ export const GlobalProvider = ({ children }) => {
 
 
 
-            axios.post(`http://localhost:4000/deals/update/${id}`, editedDeal)
+            axios.post(`/api/deals/update/${id}`, editedDeal)
                 .then(res => console.log(res.data)
                 );
 
