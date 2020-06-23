@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import ReactToExcel from 'react-html-table-to-excel';
+import {GlobalContext} from '../../context/GlobalState';
 
 const Deal = props => {
 
@@ -43,16 +43,11 @@ const DealListPrint = props => {
 };
 
 export const DealsList = () => {
-    const [deals, setDeals] = useState([]);
+    const { deals, getDeals } = useContext(GlobalContext);
 
-    useEffect(() => {
-        axios.get(
-            'http://localhost:4000/deals/')
-            .then(response => setDeals(response.data))
-            .catch(function (error) {
-                console.log(error);
-            });
-    });
+    useEffect(()=> {
+        getDeals();
+    }, []);
 
     return (
         <div style={{ marginTop: 20 }}>

@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom'
+import {GlobalContext} from '../../context/GlobalState';
 
 export const DeleteDeal = (props) => {
+    const { deleteDeal } = useContext(GlobalContext);
+
     const [clientName, setClientName] = useState('');
     const [opptDescrip, setOpptDescrip] = useState('');
     const [atlasOpptNum, setAtlasOpptNum] = useState('');
@@ -24,13 +27,8 @@ export const DeleteDeal = (props) => {
             });
     },[]);
 
-    const onDeleteClick = (e) => {
-        e.preventDefault();
-
-        axios.post(`http://localhost:4000/deals/delete/${props.match.params.id}`)
-            .then(res => console.log(res.data)
-            );
-        
+    const onDeleteClick = () => {
+        deleteDeal(props.match.params.id);        
         history.push('/');
     };
 

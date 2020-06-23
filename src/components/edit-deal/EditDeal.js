@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { GlobalContext } from '../../context/GlobalState';
+
 const styles = require("../create-deal/CreateDeal.module.scss");
 
 export const EditDeal = (props) => {
+    const { editDeal } = useContext(GlobalContext);
     const [id, setId] = useState();
     const [clientName, setClientName] = useState('');
     const [opptDescrip, setOpptDescrip] = useState('');
@@ -23,7 +26,6 @@ export const EditDeal = (props) => {
     const history = useHistory();
 
     const setDealEditedState = (data) => {
-        console.log(data);
         
         setId(data.id);
         setClientName(data.clientName);
@@ -43,7 +45,6 @@ export const EditDeal = (props) => {
     };
 
     const onSubmitForm = () => {
-        console.log(`name: ${assets}`);
 
         //create new deal object with values from form
         const editedDeal = {
@@ -66,12 +67,7 @@ export const EditDeal = (props) => {
             notes: notes
         };
 
-        console.log(editedDeal);
-        
-
-        axios.post(`http://localhost:4000/deals/update/${props.match.params.id}`, editedDeal)
-            .then(res => console.log(res.data)
-            );
+        editDeal(props.match.params.id,editedDeal);
         
         history.push('/');
     }

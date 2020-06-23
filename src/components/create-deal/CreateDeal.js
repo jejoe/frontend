@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../../context/GlobalState';
 const styles = require("./CreateDeal.module.scss");
 
 export const CreateDeal = () => {
+    const { addDeal } = useContext(GlobalContext);
     const [id, setId] = useState();
     const [clientName, setClientName] = useState('');
     const [opptDescrip, setOpptDescrip] = useState('');
@@ -20,7 +21,7 @@ export const CreateDeal = () => {
     const [notes, setNotes] = useState('');
 
     const onSubmitForm = () => {
-       
+
         console.log(`name: ${clientName}`);
 
         //create new deal object with values from form
@@ -45,9 +46,7 @@ export const CreateDeal = () => {
 
         };
 
-        axios.post('http://localhost:4000/deals/add', newDeal)
-            .then(res => console.log(res.data)
-            );
+        addDeal(newDeal);
 
         setId('');
         setClientName('');
@@ -91,7 +90,7 @@ export const CreateDeal = () => {
                                 value={clientName}
                                 onChange={(e) => setClientName(e.target.value)}
                                 name=''
-                                style={{minHeight: '60px'}}
+                                style={{ minHeight: '60px' }}
                             />
                         </div>
                         <div className='form-group'>
@@ -101,7 +100,7 @@ export const CreateDeal = () => {
                                 value={opptDescrip}
                                 onChange={(e) => setOpptDescrip(e.target.value)}
                                 name=''
-                                style={{minHeight: '150px'}}
+                                style={{ minHeight: '150px' }}
                             />
                         </div>
                         <div className='form-group'>
@@ -219,7 +218,7 @@ export const CreateDeal = () => {
                                 value={notes}
                                 onChange={(e) => setNotes(e.target.value)}
                                 name=''
-                                style={{minHeight: '300px'}}
+                                style={{ minHeight: '300px' }}
                             />
                         </div>
                     </div>
